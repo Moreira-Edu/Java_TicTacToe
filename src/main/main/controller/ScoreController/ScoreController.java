@@ -25,11 +25,11 @@ public class ScoreController extends ScoreModel {
 
     private void test(JButton[] buttons, AtomicReference<Character> winner, int[][] steps) {
         if (winner.get() != 'X' && winner.get() != 'O') {
-            Arrays.stream(cols).forEach(col -> {
+            Arrays.stream(steps).forEach(step -> {
                 AtomicInteger x = new AtomicInteger();
                 AtomicInteger o = new AtomicInteger();
 
-                Arrays.stream(col).forEach(index -> {
+                Arrays.stream(step).forEach(index -> {
                     if (buttons[index].getText().equals("X")) {
                         x.getAndIncrement();
                     } else if (buttons[index].getText().equals("O")) {
