@@ -9,12 +9,14 @@ import java.util.Arrays;
 
 public class TicTacToe extends TicTacToeController {
     Button buttons = new Button();
+    Score score = new Score();
 
 
     public TicTacToe() {
         super();
-
-        this.start(buttons.generateButton());
+        this.setButtons(buttons.generateButton());
+        this.setScoreLabel(score.generateScore());
+        this.start();
 
     }
 

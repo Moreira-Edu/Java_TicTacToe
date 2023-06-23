@@ -11,40 +11,60 @@ import java.util.Arrays;
 public class TicTacToeController extends JFrame {
     ScoreController score = new ScoreController();
     ButtonController buttonController = new ButtonController();
-
-     private char winner;
+    private JButton[] buttons;
+    private JLabel[] scoreLabel;
+    private char winner;
 
     public TicTacToeController() {
-
     }
 
-    protected void start(JButton[] buttons) {
+    public void setButtons(JButton[] buttons) {
+        this.buttons = buttons;
+    }
+
+    public void setScoreLabel(JLabel[] scoreLabel) {
+        this.scoreLabel = scoreLabel;
+    }
+
+    protected void start() {
         setDefaultCloseOperation(3);
         setLayout(null);
         setBounds(250, 100, 700, 500);
         Arrays.stream(buttons).forEach(button -> {
-            setAction(button, buttons);
+            setAction(button);
             add(button);
         });
+        Arrays.stream(scoreLabel).forEach(this::add);
         setVisible(true);
-
     }
 
 
-    private void setAction(JButton button, JButton[] buttons) {
+    private void setAction(JButton button) {
         button.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                buttonController.setTextAction(button);
-                winner = score.checkWinner(buttons);
-                endGame(buttons);
+                if (!button.getText().equals("O") && !button.getText().equals("X")) {
+                    buttonController.setTextAction(button);
+                    winner = score.checkWinner(buttons);
+                    endGame();
+                }
             }
         });
     }
 
-    private void endGame(JButton[] buttons) {
+    private void endGame() {
 
-        if(winner == 'X' || winner == 'O' || winner == 'E'){
+        if (winner == 'X' || winner == 'O' || winner == 'E') {
+            if (winner == 'X') {
+                scoreLabel[1].setText("X " + score.getxScore());
+                JOptionPane.showMessageDialog(null, "X ganhou!");
+            }
+            if (winner == 'O') {
+                scoreLabel[2].setText("O " + score.getoScore());
+                JOptionPane.showMessageDialog(null, "O ganhou!");
+            }
+            if (winner == 'E') JOptionPane.showMessageDialog(null, "Empate!");
+
             score.resetRound();
             buttonController.clearText(buttons);
         }
