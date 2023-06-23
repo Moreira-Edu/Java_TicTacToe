@@ -1,18 +1,20 @@
 package view;
 
 
+import controller.ticTacToe.TicTacToeController;
+
 import javax.swing.*;
 import java.util.Arrays;
 
 
-public class TicTacToe extends JFrame {
+public class TicTacToe extends TicTacToeController {
+    Button buttons = new Button();
 
-    Buttons buttons = new Buttons();
-    public TicTacToe(){
-        setDefaultCloseOperation(3);
-        setLayout(null);
-        setBounds(250,100,700,500);
-        Arrays.stream(buttons.generateButton()).forEach(this::add);
-        setVisible(true);
+
+    public TicTacToe() {
+        super();
+
+        this.start(buttons.generateButton());
     }
+
 }
