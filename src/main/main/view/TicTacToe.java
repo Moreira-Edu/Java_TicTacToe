@@ -15,6 +15,7 @@ public class TicTacToe extends TicTacToeController {
         super();
 
         this.start(buttons.generateButton());
+
     }
 
 }

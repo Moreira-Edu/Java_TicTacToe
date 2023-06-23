@@ -21,11 +21,16 @@ public class ButtonController {
     }
 
     public void setTextAction(JButton button) {
-        if(!button.getText().equals("O") && !button.getText().equals("X")){
+        if (!button.getText().equals("O") && !button.getText().equals("X")) {
             setText(button);
         }
 
     }
 
+    public void clearText(JButton[] buttons) {
+        Arrays.stream(buttons).forEach(button -> {
+            button.setText("");
+        });
+    }
 
 }

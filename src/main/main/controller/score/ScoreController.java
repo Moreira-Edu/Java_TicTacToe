@@ -15,7 +15,7 @@ public class ScoreController extends ScoreModel {
     int round = 0;
 
 
-    public void checkWinner(JButton[] buttons) {
+    public char checkWinner(JButton[] buttons) {
         round++;
         getWiner(buttons, winner, rows);
 
@@ -23,10 +23,13 @@ public class ScoreController extends ScoreModel {
 
         getWiner(buttons, winner, diagonals);
 
+
         if (winner.get() == 'X') JOptionPane.showMessageDialog(null, "X ganhou!");
         if (winner.get() == 'O') JOptionPane.showMessageDialog(null, "O ganhou!");
         if (round == 9 && winner.get() != 'X' && winner.get() != 'O')
-            JOptionPane.showMessageDialog(null, "Empate!");
+            winner.set('E');
+
+        return winner.get();
     }
 
     private void getWiner(JButton[] buttons, AtomicReference<Character> winner, int[][] steps) {
@@ -54,5 +57,13 @@ public class ScoreController extends ScoreModel {
 
             });
         }
+    }
+
+    public void resetRound() {
+        System.out.println(winner + " + " + round);
+        winner = new AtomicReference<>((char) 0);
+        round = 0;
+
+        System.out.println(winner + " + " + round);
     }
 }

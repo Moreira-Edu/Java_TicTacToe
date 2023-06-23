@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Button {
 
-    public JButton[] generateButton() {
+    protected JButton[] generateButton() {
 
 
         JButton[] button = new JButton[9];

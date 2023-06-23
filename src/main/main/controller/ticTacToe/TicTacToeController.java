@@ -10,14 +10,15 @@ import java.util.Arrays;
 
 public class TicTacToeController extends JFrame {
     ScoreController score = new ScoreController();
-    ButtonController buttonController =  new ButtonController();
+    ButtonController buttonController = new ButtonController();
 
+     private char winner;
 
-
-    public TicTacToeController(){
+    public TicTacToeController() {
 
     }
-    public void start(JButton[] buttons) {
+
+    protected void start(JButton[] buttons) {
         setDefaultCloseOperation(3);
         setLayout(null);
         setBounds(250, 100, 700, 500);
@@ -30,18 +31,25 @@ public class TicTacToeController extends JFrame {
     }
 
 
-    private void setAction(JButton button, JButton[] buttons){
+    private void setAction(JButton button, JButton[] buttons) {
         button.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-             buttonController.setTextAction(button);
-             score.checkWinner(buttons);
-
+                buttonController.setTextAction(button);
+                winner = score.checkWinner(buttons);
+                endGame(buttons);
             }
         });
     }
 
+    private void endGame(JButton[] buttons) {
 
+        if(winner == 'X' || winner == 'O' || winner == 'E'){
+            score.resetRound();
+            buttonController.clearText(buttons);
+        }
+
+    }
 
 
 }
