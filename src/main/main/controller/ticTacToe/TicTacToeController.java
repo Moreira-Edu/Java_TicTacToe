@@ -15,8 +15,6 @@ public class TicTacToeController extends JFrame {
     private JLabel[] scoreLabel;
     private char winner;
 
-    public TicTacToeController() {
-    }
 
     public void setButtons(JButton[] buttons) {
         this.buttons = buttons;

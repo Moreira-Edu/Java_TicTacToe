@@ -13,7 +13,6 @@ public class TicTacToe extends TicTacToeController {
 
 
     public TicTacToe() {
-        super();
         this.setButtons(buttons.generateButton());
         this.setScoreLabel(score.generateScore());
         this.start();
